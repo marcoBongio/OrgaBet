@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+   <head>
+      <title>OrgaBet - Profile</title>
+   </head>
+    
+   <style>
+      table th, table td {
+         padding: 5px;
+      }
+      .message {
+         color: blue;
+      }
+   </style>
+    
+   <body>
+
+      <!-- Include _menu.html -->
+      <th:block></th:block>  
+ <div layout:fragment="content">
+      <h2>Profile </h2>
+       <form id="form-profile" th:action="@{__${#httpServletRequest.requestURI}__}" method="post">
+                <h1 class="h3 mb-3 font-weight-normal" th:utext="${user.username}">...</h1>
+                <label for="inputFirstName" class="sr-only">First Name</label>
+                <input type="text" name="firstName" id="inputUsername" class="form-control" placeholder="Firstname" required="" th:attr="value = ${user.firstName}" />
+				<label for="inputLastName" class="sr-only">Last Name</label>
+                <input type="text" name="lastName" id="inputUsername" class="form-control" placeholder="Lastname" required="" th:attr="value = ${user.lastName}"/>
+                <div sec:authorize="hasAuthority('ADMIN')">BAN USER<input type="checkbox" sec:authorize="hasAuthority('ADMIN')" id=inputBanned name="banned" th:checked="${user.banned}"></div><br>
+                <button id="submit-form" class="btn btn-lg btn-primary btn-block" type="submit">Apply Edits</button>
+            </form>
+            <form  sec:authorize="hasAuthority('USER')" id="form-profile" th:action="@{/user/__${user.username}__/delete}" method="post">
+            	<button id="submit-form" class="btn btn-lg btn-primary btn-block" type="submit">Delete profile</button>
+            </form>
+    <div id=listDiv>           
+	<div th:fragment="couponList">
+    	  <h2>Coupons </h2>
+	     <table>
+              <tr th:each="c: ${coupons} ">
+                  <td th:utext="${c.date}">...</td>
+                  <td><form class="form-signin" th:action="@{${user.username}+'/coupon/'+ ${c.id}}" method="get">
+                <button class="btn btn-md btn-success btn-block" type="Submit">View Coupon</button>
+            	</form></td>
+            	<td>
+                <button class="btn btn-md btn-success btn-block" type="Button" th:usr="${user.username}" th:coup="${c.id}" th:onclick="javascript:deleteCoupon(this.getAttribute('usr'),this.getAttribute('coup'));">Delete Coupon</button>
+            	</td>
+               </tr>
+         </table>
+          <script type="text/javascript" th:inline="javascript">
+                      function deleteCoupon(usr, coup) {
+                
+
+                var url = "/deletecoupon/" + usr + "/"+ coup;
+                $('#listDiv').load(url);
+
+
+            }
+        </script>
+    </div>
+
+    </div>
+	</div>
+   </body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+   <head>
+      <title th:utext="${title}"></title>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+   </head>
+    
+   <style>
+      table th, table td {
+         padding: 5px;
+      }
+      .message {
+         color: blue;
+      }
+   </style>
+    
+   <body>
+ 
+	    
+      <!-- Include _menu.html -->
+      <th:block></th:block>  
+
+		
+  	<div layout:fragment="content">    
+   
+  	   <div class="sidenav">
+  	   <ul style="list-style-type:none;">
+		  <li class="shownav"><a>Football</a>
+		  	<ul class="listnav" style="list-style-type:none;">
+		  		<li class="liDiv"><a href="/stats?sport=Football&division=B1&year=2019">Pro League</a></li>
+		  		<li><a href="/stats?sport=Football&division=D1&year=2019">Bundesliga</a></li>
+		  		<li><a href="/stats?sport=Football&division=D2&year=2019">Bundesliga 2</a></li>
+		  		<li><a href="/stats?sport=Football&division=E0&year=2019">Premier League</a></li>
+		  		<li><a href="/stats?sport=Football&division=E1&year=2019">Championship</a></li>
+		  		<li><a href="/stats?sport=Football&division=E2&year=2019">League One</a></li>
+		  		<li><a href="/stats?sport=Football&division=E3&year=2019">League Two</a></li>
+		  		<li><a href="/stats?sport=Football&division=EC&year=2019">National League</a></li>
+		  		<li><a href="/stats?sport=Football&division=F1&year=2019">Ligue 1</a></li>
+		  		<li><a href="/stats?sport=Football&division=F2&year=2019">Ligue 2</a></li>
+		  		<li><a href="/stats?sport=Football&division=G1&year=2019">Souper Ligka</a></li>
+		  		<li><a href="/stats?sport=Football&division=I1&year=2019">Serie A</a></li>
+		  		<li><a href="/stats?sport=Football&division=I2&year=2019">Serie B</a></li>
+		  		<li><a href="/stats?sport=Football&division=N1&year=2019">Eredivisie</a></li>
+	  			<li><a href="/stats?sport=Football&division=P1&year=2019">Primeira Liga</a></li>
+		  		<li><a href="/stats?sport=Football&division=SC0&year=2019">Scot Premiership</a></li>
+		  		<li><a href="/stats?sport=Football&division=SC1&year=2019">Scot Champions</a></li>
+		  		<li><a href="/stats?sport=Football&division=SC2&year=2019">Scot League 1</a></li>
+		  		<li><a href="/stats?sport=Football&division=SC3&year=2019">Scot League 2</a></li>
+		  		<li><a href="/stats?sport=Football&division=SP1&year=2019">Primera Division</a></li>
+		  		<li><a href="/stats?sport=Football&division=SP2&year=2019">Segunda Division</a></li>
+		  		<li><a href="/stats?sport=Football&division=T1&year=2019">Super Lig</a></li>
+
+		  	</ul>
+		  </li>
+		  
+		  <li class="shownav"><a>Basketball</a>
+		  	<ul class="listnav" style="list-style-type:none;">
+		  		<li><a href="/stats?sport=Basket&year=2019">NBA</a></li>
+		  	</ul>
+		 </li>
+		 
+  	 	  <li class="shownav"><a>Tennis</a>
+		  	<ul class="listnav" style="list-style-type:none;">
+		  		<li><a href="/stats?sport=Tennis&division=Clay&year=2019">Clay</a></li>
+		  		<li><a href="/stats?sport=Tennis&division=Grass&year=2019">Grass</a></li>
+		  		<li><a href="/stats?sport=Tennis&division=Hard&year=2019">Hard</a></li>
+		  	</ul>
+		  </li>
+		  
+		   
+		  
+		  
+		</ul>
+		</div>
+		
+		<div id="drop-menu">
+			<ul id="menu">
+				<li><a href="#" th:utext="${year}"></a>
+					<ul>
+						<li><a th:href="@{/stats?sport=__${sport}__&division=__${division}__&year=2019}">2019</a></li>
+						<li><a th:href="@{/stats?sport=__${sport}__&division=__${division}__&year=2018}">2018</a></li>
+						<li><a th:href="@{/stats?sport=__${sport}__&division=__${division}__&year=2017}">2017</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+     <h2 th:if="${sport.equals('Football')}" th:switch="${division}">          
+                <span th:case="I1">Serie A</span>
+                <span th:case="I2">Serie B</span>
+                <span th:case="E0">Premier League</span>
+                <span th:case="E1">Championship</span>
+                <span th:case="E2">League One</span>
+                <span th:case="E3">League Two</span>
+                <span th:case="EC">National League</span>
+                <span th:case="SP1">Primer Division</span>
+                <span th:case="SP2">Segund Division</span>
+                <span th:case="F1">Ligue 1</span>
+                <span th:case="F2">Ligue 2</span>
+                <span th:case="D1">Bundesliga</span>
+                <span th:case="D2">Bundesliga 2</span>
+                <span th:case="N1">Eredivisie</span>
+                <span th:case="G1">Souper Ligka</span>
+                <span th:case="B1">Pro League</span>
+                <span th:case="P1">Primeir Liga</span>
+                <span th:case="T1">Super Lig</span>
+                <span th:case="SC0">Scot Premiership</span>
+                <span th:case="SC1">Scot Champions</span>
+                <span th:case="SC2">Scot League 1</span>
+                <span th:case="SC3">Scot League 2</span>
+            </h2>
+
+            <h2 th:if="${sport.equals('Basket')}">
+                <span>NBA</span>
+            </h2>
+
+            <h2 th:if="${sport.equals('Tennis')}">
+                <span th:utext="${division}"></span>
+            </h2>
+		
+      <div id="FootballTable" th:if="${sport.equals('Football') and year.equals('2019')}">
+      <h2>Home</h2>
+       
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>DRAW(%)</th>
+               <th>LOSE(%)</th>
+               <th>OVER 2.5(%)</th>
+               <th>UNDER 2.5(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG DRAW ODD</th>
+               <th>AVG LOSE ODD</th>
+               <th>AVG OVER 2.5 ODD</th>
+               <th>AVG UNDER 2.5 ODD</th>
+
+            </tr>
+          </thead>
+        
+            <tr class="statsRow" th:each ="tbl : ${statsH}">
+               <td th:utext="${tbl.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeDraw, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeLost, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeOver, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeUnder, 0, 2)}">...</td>
+			   <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'H'}" 
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'D'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'OVER'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'UNDER'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+      </table>
+      
+		<h2>Away</h2>
+      
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>DRAW(%)</th>
+               <th>LOSE(%)</th>
+               <th>OVER 2.5(%)</th>
+               <th>UNDER 2.5(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG DRAW ODD</th>
+               <th>AVG LOSE ODD</th>
+               <th>AVG OVER 2.5 ODD</th>
+               <th>AVG UNDER 2.5 ODD</th>
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tblA : ${statsA}">
+               <td th:utext="${tblA.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeDraw, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeLost, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeOver, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeUnder, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'D'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'H'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'OVER'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'UNDER'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+     </div>
+     
+     <div id="FootballTable" th:if="${sport.equals('Football') and (!year.equals('2019'))}">
+      <h2>Home</h2>
+       
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>DRAW(%)</th>
+               <th>LOSE(%)</th>
+               <th>OVER 2.5(%)</th>
+               <th>UNDER 2.5(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG DRAW ODD</th>
+               <th>AVG LOSE ODD</th>
+
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tbl : ${statsH}">
+               <td th:utext="${tbl.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeDraw, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeLost, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeOver, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeUnder, 0, 2)}">...</td>
+			   <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'H'}" 
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'D'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+      
+		<h2>Away</h2>
+      
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>DRAW(%)</th>
+               <th>LOSE(%)</th>
+               <th>OVER 2.5(%)</th>
+               <th>UNDER 2.5(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG DRAW ODD</th>
+               <th>AVG LOSE ODD</th>
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tblA : ${statsA}">
+               <td th:utext="${tblA.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeDraw, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeLost, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeOver, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeUnder, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'D'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'H'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+     </div>
+     
+     <div id="tennisTable" th:if="${sport.equals('Tennis')}">
+     
+       
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Player</th>
+               <th>WIN(%)</th>
+               <th>LOSE(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG LOSE ODD</th>
+
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tbl : ${statsH}">
+               <td th:utext="${tbl.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeLost, 0, 2)}">...</td>
+			   <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'H'}" 
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+     </div>
+     
+     <div id="BasketTable" th:if="${sport.equals('Basket')}">
+      <h2>Home</h2>
+       
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>LOSE(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG LOSE ODD</th>
+
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tbl : ${statsH}">
+               <td th:utext="${tbl.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tbl.homeLost, 0, 2)}">...</td>
+			   <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'H'}" 
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tbl.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+      
+	<h2>Away</h2>
+      
+      <table border="0">
+          <thead style="background-color: #343a40; color:white; font-weight:bold;">
+            <tr>
+               <th>Team</th>
+               <th>WIN(%)</th>
+               <th>LOSE(%)</th>
+               <th>AVG WIN ODD</th>
+               <th>AVG LOSE ODD</th>
+            </tr>
+          </thead>
+            <tr class="statsRow" th:each ="tblA : ${statsA}">
+               <td th:utext="${tblA.team}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeWin, 0, 2)}">...</td>
+               <td th:utext="${#numbers.formatDecimal(tblA.homeLost, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'A'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+               <td th:each="a: ${tblA.avgOdds}" th:if="${a.id == 'H'}"
+                           th:text="${#numbers.formatDecimal(a.avg, 0, 2)}">...</td>
+            </tr>
+      </table>
+     </div>
+     
+     </div>
+     
+   </body>
+</html>

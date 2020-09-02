@@ -1,0 +1,61 @@
+db.football.updateMany({}, {$set: {"sport":"Football"}} );
+
+db.football.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.football.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"H", quotes: [{bookmaker: "bet365", odd: elem.B365H},{bookmaker: "betwin", odd: elem.BWH},{bookmaker: "Blue Square", odd: elem.BSH},{bookmaker: "Gamebookers", odd: elem.GBH},{bookmaker: "Interwetten", odd: elem.IWH},{bookmaker: "Ladbrokes", odd: elem.LBH},{bookmaker: "Pinnacle", odd: elem.PSH},{bookmaker: "Pinnacle", odd: elem.PH},{bookmaker: "Sporting Odds", odd: elem.SOH},{bookmaker: "Sportingbet", odd: elem.SBH},{bookmaker: "Stan James", odd: elem.SJH},{bookmaker: "Stanleybet", odd: elem.SYH},{bookmaker: "VC Bet", odd: elem.VCH},{bookmaker: "William Hill", odd: elem.WHH} ] }
+}});});
+
+db.football.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.football.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"D", quotes: [{bookmaker: "bet365", odd: elem.B365D},{bookmaker: "betwin", odd: elem.BWD},{bookmaker: "Blue Square", odd: elem.BSD},{bookmaker: "Gamebookers", odd: elem.GBD},{bookmaker: "Interwetten", odd: elem.IWD},{bookmaker: "Ladbrokes", odd: elem.LBD},{bookmaker: "Pinnacle", odd: elem.PSD},{bookmaker: "Pinnacle", odd: elem.PD},{bookmaker: "Sporting Odds", odd: elem.SOD},{bookmaker: "Sportingbet", odd: elem.SBD},{bookmaker: "Stan James", odd: elem.SJD},{bookmaker: "Stanleybet", odd: elem.SYD},{bookmaker: "VC Bet", odd: elem.VCD},{bookmaker: "William Hill", odd: elem.WHD} ] }
+}});});
+
+db.football.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.football.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"A", quotes: [{bookmaker: "bet365", odd: elem.B365A},{bookmaker: "betwin", odd: elem.BWA},{bookmaker: "Blue Square", odd: elem.BSA},{bookmaker: "Gamebookers", odd: elem.GBA},{bookmaker: "Interwetten", odd: elem.IWA},{bookmaker: "Ladbrokes", odd: elem.LBA},{bookmaker: "Pinnacle", odd: elem.PSA},{bookmaker: "Pinnacle", odd: elem.PA},{bookmaker: "Sporting Odds", odd: elem.SOA},{bookmaker: "Sportingbet", odd: elem.SBA},{bookmaker: "Stan James", odd: elem.SJA},{bookmaker: "Stanleybet", odd: elem.SYA},{bookmaker: "VC Bet", odd: elem.VCA},{bookmaker: "William Hill", odd: elem.WHA} ] }
+}});});
+
+db.football.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.football.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"OVER", quotes: [{bookmaker: "bet365", odd: elem.B365OVER},{bookmaker: "betwin", odd: elem.BWOVER},{bookmaker: "Blue Square", odd: elem.BSOVER},{bookmaker: "Gamebookers", odd: elem.GBOVER},{bookmaker: "Interwetten", odd: elem.IWOVER},{bookmaker: "Ladbrokes", odd: elem.LBOVER},{bookmaker: "Pinnacle", odd: elem.PSOVER}, {bookmaker: "Pinnacle", odd: elem.POVER},{bookmaker: "Sporting Odds", odd: elem.SOOVER},{bookmaker: "Sportingbet", odd: elem.SBOVER},{bookmaker: "Stan James", odd: elem.SJOVER},{bookmaker: "Stanleybet", odd: elem.SYOVER},{bookmaker: "VC Bet", odd: elem.VCOVER},{bookmaker: "William Hill", odd: elem.WHOVER} ] }
+}});});
+
+db.football.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.football.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"UNDER", quotes: [{bookmaker: "bet365", odd: elem.B365UNDER},{bookmaker: "betwin", odd: elem.BWUNDER},{bookmaker: "Blue Square", odd: elem.BSUNDER},{bookmaker: "Gamebookers", odd: elem.GBUNDER},{bookmaker: "Interwetten", odd: elem.IWUNDER},{bookmaker: "Ladbrokes", odd: elem.LBUNDER},{bookmaker: "Pinnacle", odd: elem.PSUNDER},{bookmaker: "Pinnacle", odd: elem.PUNDER},{bookmaker: "Sporting Odds", odd: elem.SOUNDER},{bookmaker: "Sportingbet", odd: elem.SBUNDER},{bookmaker: "Stan James", odd: elem.SJUNDER},{bookmaker: "Stanleybet", odd: elem.SYUNDER},{bookmaker: "VC Bet", odd: elem.VCUNDER},{bookmaker: "William Hill", odd: elem.WHUNDER} ] }
+}});});
+
+db.football.update({}, {$unset: {B365H:1, BWH:1, BSH:1, GBH:1, IWH:1, LBH:1, PSH:1, PH:1, SOH:1, SBH:1, SJH:1, SYH:1, VCH:1, WHH:1}}, {multi:true} );
+
+db.football.update({}, {$unset: {B365D:1, BWD:1, BSD:1, GBD:1, IWD:1, LBD:1, PSD:1, PD:1, SOD:1, SBD:1, SJD:1, SYD:1, VCD:1, WHD:1}}, {multi:true} );
+
+db.football.update({}, {$unset: {B365A:1, BWA:1, BSA:1, GBA:1, IWA:1, LBA:1, PSA:1, PA:1, SOA:1, SBA:1, SJA:1, SYA:1, VCA:1, WHA:1}}, {multi:true} );
+
+db.football.update({}, {$unset: {B365OVER:1, BWOVER:1, BSOVER:1, GBOVER:1, IWOVER:1, LBOVER:1, PSOVER:1, POVER:1, SOOVER:1, SBOVER:1, SJOVER:1, SYOVER:1, VCOVER:1, WHOVER:1}}, {multi:true} );
+
+db.football.update({}, {$unset: {B365UNDER:1, BWUNDER:1, BSUNDER:1, GBUNDER:1, IWUNDER:1, LBUNDER:1, PSUNDER:1, PUNDER:1, SOUNDER:1, SBUNDER:1, SJUNDER:1, SYUNDER:1, VCUNDER:1, WHUNDER:1}}, {multi:true} );
+		
+db.football.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});
+
+db.football.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});
+
+db.football.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});
+
+db.football.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});
+
+db.football.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});

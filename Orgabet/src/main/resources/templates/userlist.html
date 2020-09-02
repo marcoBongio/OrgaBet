@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+<head>
+      <title>Orgabet - Users</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+   </head>
+    
+   <style>
+      table th, table td {
+         padding: 5px;
+      }
+      .message {
+         color: blue;
+      }
+   </style>
+    
+   <body>
+      <!-- Include _menu.html -->
+     <div layout:fragment="content">
+      <div id="wrapper">
+      <div id="tableDiv">
+         <h2>Users</h2>
+         <table border="1">
+               <tr>
+                  <th>Username</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Profile</th>
+               </tr>
+               <tr th:each ="user : ${userList}">
+                  <td th:utext="${user.username}">...</td>
+                  <td th:utext="${user.firstName}">...</td>
+                  <td th:utext="${user.LastName}">...</td>
+                  <td>            <form class="form-signin" th:action="@{'users/'+ ${user.username}}" method="get">
+                <button class="btn btn-md btn-success btn-block" type="Submit">Profile</button>
+            </form></td>
+
+               </tr>
+         </table>
+      </div>
+   </div>
+  </div>
+   </body>
+</html>

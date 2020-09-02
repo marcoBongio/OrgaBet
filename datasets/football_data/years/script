@@ -1,0 +1,4 @@
+for j in {2001..2019}; do FILES="/home/riccardo/Scrivania/largescale/task2/datasets/football_data/years/$j/*"; for f in $FILES; do mongoimport -d=tst -c=football --file="$f" --type=csv --headerline --ignoreBlanks; done; done;
+
+
+for j in {2000..2019}; do cd $j; sed -i 's/>2.5/OVER/g' *; sed -i 's/<2.5/UNDER/g' *; cd ..; done;

@@ -1,0 +1,21 @@
+db.basket.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.basket.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"H", quotes: [{bookmaker: "bet365", odd: elem.B365H},{bookmaker: "Matchbook", odd: elem.MH},{bookmaker:"Pinnacle", odd: elem.PH} ] }
+}});});
+
+db.basket.find()._addSpecial("$snapshot",true).forEach(
+	function(elem) {
+		db.basket.update(
+			{_id: elem._id},
+			{ $push: {
+				odds: { type:"A", quotes: [{bookmaker: "bet365", odd: elem.B365A},{bookmaker: "Matchbook", odd: elem.MA},{bookmaker:"Pinnacle", odd: elem.PA} ] }
+}});});
+
+db.basket.update({}, {$unset: {B365H:1, MH:1, PH:1}}, {multi:true} );
+
+db.basket.update({}, {$unset: {B365A:1, MA:1, PA:1}}, {multi:true} );
+
+db.basket.update({"odds.quotes.odd":{$type:6}},{$pull: {"odds.$.quotes": {odd:{$type:6}}}},{multi:true});

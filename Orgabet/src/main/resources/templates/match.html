@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+   <head>
+      <title th:utext="${title}"></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <div layout:fragment="content">
+
+                 <div class="sidenav">
+              <ul style="list-style-type:none;">
+                  <li class="shownav"><a>Football</a>
+                     <ul class="listnav"  th:each="divisionF : ${divisionsF}" th:switch="${divisionF.division}" style="list-style-type:none;">
+                        <li><a th:case="I1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Serie A</a></li>
+                        <li><a th:case="I2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Serie B</a></li>
+				  		<li><a th:case="E0" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Premier League</a></li>
+				  		<li><a th:case="E1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Championship</a></li>
+				  		<li><a th:case="E2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">League One</a></li>
+				  		<li><a th:case="E3" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">League Two</a></li>
+				  		<li><a th:case="EC" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">National League</a></li>
+				  		<li><a th:case="SP1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Primera Division</a></li>
+				  		<li><a th:case="SP2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Segunda Division</a></li>
+				  		<li><a th:case="F1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Ligue 1</a></li>
+				  		<li><a th:case="F2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Ligue 2</a></li>
+				  		<li><a th:case="D1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Bundesliga</a></li>
+				  		<li><a th:case="D2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Bundesliga 2</a></li>
+				  		<li><a th:case="N1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Eredivisie</a></li>
+				  		<li><a th:case="G1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Souper Ligka</a></li>
+				  		<li><a th:case="B1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Pro League</a></li>
+				  		<li><a th:case="P1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Primeira Liga</a></li>
+				  		<li><a th:case="T1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Super Lig</a></li>
+				  		<li><a th:case="SC0" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Scot Premiership</a></li>
+				  		<li><a th:case="SC1" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Scot Champions</a></li>
+				  		<li><a th:case="SC2" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Scot League 1</a></li>
+				  		<li><a th:case="SC3" th:href="@{'/match?sport=Football&division='+${divisionF.division}+'&date='+${date}}">Scot League 2</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="shownav"><a>Basketball</a>
+                    <ul class="listnav" th:if="${B==true}" style="list-style-type:none;">
+                          <li><a th:href="@{'/match?sport=Basket&date='+${date}}">NBA</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="shownav"><a>Tennis</a>
+                    <ul class="listnav"  th:each="divisionT : ${divisionsT}" style="list-style-type:none;">
+                        <li>
+                            <a th:text="${divisionT.division}" th:href="@{'/match?sport=Tennis&division='+${divisionT.division}+'&date='+${date}}"></a>
+                        </li>
+                      </ul>
+                  </li>
+
+
+              </ul>
+          </div>
+
+
+          
+          <div id="wrapper">
+          <div id="tableDiv">
+            <h2 th:if="${sport.equals('Football')}" th:switch="${division}">          
+                <span th:case="I1">Serie A</span>
+                <span th:case="I2">Serie B</span>
+                <span th:case="E0">Premier League</span>
+                <span th:case="E1">Championship</span>
+                <span th:case="E2">League One</span>
+                <span th:case="E3">League Two</span>
+                <span th:case="EC">National League</span>
+                <span th:case="SP1">Primera Division</span>
+                <span th:case="SP2">Segunda Division</span>
+                <span th:case="F1">Ligue 1</span>
+                <span th:case="F2">Ligue 2</span>
+                <span th:case="D1">Bundesliga</span>
+                <span th:case="D2">Bundesligspan 2</span>
+                <span th:case="N1">Eredivisie</span>
+                <span th:case="G1">Souper Ligka</span>
+                <span th:case="B1">Pro League</span>
+                <span th:case="P1">Primeira Liga</span>
+                <span th:case="T1">Super Lig</span>
+                <span th:case="SC0">Scot Premiership</span>
+                <span th:case="SC1">Scot Champions</span>
+                <span th:case="SC2">Scot League 1</span>
+                <span th:case="SC3">Scot League 2</span>
+            </h2>
+
+            <h2 th:if="${sport.equals('Basket')}">
+                <span>NBA</span>
+            </h2>
+
+            <h2 th:if="${sport.equals('Tennis')}">
+                <span th:utext="${division}"></span>
+            </h2>
+
+            <table id="matchTable" border="1">
+                <thead style="background-color: #343a40; color:white; font-weight:bold;">
+                    <tr>
+                        <th>DATE</th>
+                        <th th:if="${!sport.equals('Tennis')}">TIME</th>
+                        <th th:if="${!sport.equals('Tennis')}">HOME TEAM</th>
+                        <th th:if="${!sport.equals('Tennis')}">AWAY TEAM</th>
+                        <th th:if="${sport.equals('Tennis')}">PLAYER ONE</th>
+                        <th th:if="${sport.equals('Tennis')}">PLAYER TWO</th>
+                        <th>1</th>
+                        <th th:if="${sport.equals('Football')}">X</th>
+                        <th>2</th>
+                        <th th:if="${sport.equals('Football')}">OVER 2.5</th>
+                        <th th:if="${sport.equals('Football')}">UNDER 2.5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each ="tbl : ${matches}">
+                    <td th:utext="${tbl.match.date}"></td>
+                    <td th:if="${!sport.equals('Tennis')}" th:utext="${tbl.match.Time}">...</td>
+                    <td th:utext="${tbl.match.homeTeam}">...</td>
+                    <td th:utext="${tbl.match.awayTeam}">...</td>
+                    <td class="quoteArea" th:each="a: ${tbl.avg}" th:if="${a.id == 'H'}"
+                        th:text="${#numbers.formatDecimal(a.avg, 0, 2)}" th:matchId="${tbl.match.id}" th:onclick="javascript:printOdd(this, this.getAttribute('matchId'));">...</td>
+                    <td class="quoteArea" th:each="a: ${tbl.avg}" th:if="${a.id == 'D' and sport.equals('Football')}"
+                        th:text="${#numbers.formatDecimal(a.avg, 0, 2)}" th:matchId="${tbl.match.id}" th:onclick="javascript:printOdd(this, this.getAttribute('matchId'));">...</td>
+                    <td class="quoteArea" th:each="a: ${tbl.avg}" th:if="${a.id == 'A'}"
+                        th:text="${#numbers.formatDecimal(a.avg, 0, 2)}" th:matchId="${tbl.match.id}" th:onclick="javascript:printOdd(this, this.getAttribute('matchId'));">...</td>
+                    <td class="quoteArea" th:each="a: ${tbl.avg}" th:if="${a.id == 'OVER' and sport.equals('Football')}"
+                        th:text="${#numbers.formatDecimal(a.avg, 0, 2)}" th:matchId="${tbl.match.id}" th:onclick="javascript:printOdd(this, this.getAttribute('matchId'));">...</td>
+                    <td class="quoteArea" th:each="a: ${tbl.avg}" th:if="${a.id == 'UNDER' and sport.equals('Football')}"
+                        th:text="${#numbers.formatDecimal(a.avg, 0, 2)}" th:matchId="${tbl.match.id}" th:onclick="javascript:printOdd(this, this.getAttribute('matchId'));">...</td>
+                    </tr>
+                </tbody>
+            </table>
+             <script type="text/javascript" th:inline="javascript">
+                function printOdd(elem, matchId) {
+                   //get the type of bet you are placing (get corresponding <th> to this clicked <td> element)
+                   var index = Array.prototype.indexOf.call(elem.parentNode.children, elem);
+                   var oddType = document.querySelector('#matchTable th:nth-child(' + (index+1) + ')').textContent;
+
+                   switch(oddType){
+                       case "1":
+                           oddType="H";
+                           break;
+                       case "X":
+                           oddType = "D";
+                           break;
+                       case "2":
+                           oddType = "A";
+                           break;
+                       case "OVER 2.5":
+                           oddType = "OVER";
+                           break;
+                       case "UNDER 2.5":
+                           oddType = "UNDER";
+                           break;
+                   }
+                        var url = "/printQuote" + "?id="+matchId+"&type="+oddType;
+                        $('#couponDiv').load(url);
+                }
+             </script>
+          </div>
+              <div id="couponDiv" class="couponDiv">
+                  <div th:fragment="coupon">
+                      <script type="text/javascript">
+                          function saveCoupon() {
+                            var url = "/saveCoupon";
+							$('#couponDiv').load(url);
+                          }
+
+                          function clearCoupon() {
+                              var url = "/clearCoupon"
+                              $('#couponDiv').load(url);
+                          }
+                                      function removeBet(elem, matchId) {
+                document.getElementById("couponTable").deleteRow(elem.parentNode.rowIndex);
+
+                var url = "/removeBet" + "?id="+matchId;
+                $('#couponDiv').load(url);
+            }
+
+                      </script>
+                      <div class="couponTitle"><h3>MyCoupon</h3></div>
+
+                      <table id="couponTable" class="couponTable">
+                          <tbody id="couponTableBody">
+                          <tr class="couponTableRow" th:each="bet:${coupon.bets}">
+                              <td th:utext="${bet.homeTeam} +' - '+ ${bet.awayTeam}">...</td>
+                              <td th:utext="${bet.result}" style="text-align: center;">...</td>
+                              <td th:text="${#numbers.formatDecimal(bet.avgOdd, 0, 2)}" style="text-align: right;">...</td>
+                              <td class="removeBet" th:matchId="${bet.matchId}" th:onclick="javascript:removeBet(this, this.getAttribute('matchId'));">-</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                      <div class="bookmakerTotDiv">
+                          <p style="font-weight: bold;">Available Bookmakers:</p>
+                          <table id="bookmakerTot" class="couponTable">
+                              <tbody id="bookmakerTotBody">
+                              <tr th:each="b: ${coupon.bookmakerTot}">
+                                  <td th:utext="${b.bookmaker}">...</td>
+                                  <td th:text="${#numbers.formatDecimal(b.quoteTot, 0, 2)}">...</td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <div class="couponButtonDiv">
+                          <button th:onclick="javascript:saveCoupon();" class="couponButton" style="background-color:green;">Save Coupon</button>
+                          <button th:onclick="javascript:clearCoupon();" class="couponButton" style="background-color:red;">Clear</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+   </body>
+</html>

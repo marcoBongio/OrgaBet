@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div th:fragment="coupon">
+        <script type="text/javascript">
+                          function saveCoupon() {
+                            var url = "/saveCoupon";
+							$('#couponDiv').load(url);
+                          }
+
+                          function clearCoupon() {
+                              var url = "/clearCoupon"
+                              $('#couponDiv').load(url);
+                          }
+
+            function removeBet(elem, matchId) {
+                document.getElementById("couponTable").deleteRow(elem.parentNode.rowIndex);
+
+                var url = "/removeBet" + "?id="+matchId;
+                $('#couponDiv').load(url);
+            }
+        </script>
+        <div class="couponTitle"><h3>MyCoupon</h3></div>
+
+        <table id="couponTable" class="couponTable">
+            <tbody id="couponTableBody">
+            <tr class="couponTableRow" th:each="bet:${coupon.bets}">
+                <td th:utext="${bet.homeTeam} +' - '+ ${bet.awayTeam}">...</td>
+                <td th:utext="${bet.result}" style="text-align: center;">...</td>
+                <td th:text="${#numbers.formatDecimal(bet.avgOdd, 0, 2)}" style="text-align: right; padding-left: 5px;">...</td>
+                <td class="removeBet" th:matchId="${bet.matchId}" th:onclick="javascript:removeBet(this, this.getAttribute('matchId'));">-</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="bookmakerTotDiv">
+            <p style="font-weight: bold;">Available Bookmakers:</p>
+            <table id="bookmakerTot" class="couponTable">
+                <tbody id="bookmakerTotBody">
+                    <tr th:each="b: ${coupon.bookmakerTot}">
+                        <td th:utext="${b.bookmaker}">...</td>
+                        <td th:text="${#numbers.formatDecimal(b.quoteTot, 0, 2)}" style="text-align: right;">...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="couponButtonDiv">
+            <button th:onclick="javascript:saveCoupon();" class="couponButton" style="background-color:green;">Save Coupon</button>
+            <button th:onclick="javascript:clearCoupon();" class="couponButton" style="background-color:red;">Clear</button>
+        </div>
+    </div>
+    
+    <div th:fragment="couponList">
+    	  <h2>Coupons </h2>
+	     <table>
+              <tr th:each="c: ${coupons} ">
+                  <td th:utext="${c.date}">...</td>
+                  <td><form class="form-signin" th:action="@{${user.username}+'/coupon/'+ ${c.id}}" method="get">
+                <button class="btn btn-md btn-success btn-block" type="Submit">View Coupon</button>
+            	</form></td>
+            	<td>
+                <button class="btn btn-md btn-success btn-block" type="button" th:usr="${user.username}" th:coup="${c.id}" th:onclick="javascript:deleteCoupon(this.getAttribute('usr'),this.getAttribute('coup'));">Delete Coupon</button>
+            	</td>
+               </tr>
+         </table>
+          <script type="text/javascript">
+                      function deleteCoupon(usr, coup) {
+                
+
+                var url = "/deletecoupon/" + usr + "/"+ coup;
+                $('#listDiv').load(url);
+
+
+            }
+        </script>
+    </div>
+    </body>
+</html>

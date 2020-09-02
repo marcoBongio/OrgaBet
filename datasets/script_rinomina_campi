@@ -1,0 +1,7 @@
+db.match.update({}, {$rename: {"Div":"division", "Date":"date", "HomeTeam":"homeTeam", "AwayTeam":"awayTeam", "FTHG":"fullTimeHomeScore", "FTAG":"fullTimeAwayScore", "FTR":"fullTimeResult" }}, {multi:true} );
+
+db.match.update({sport:"Tennis"}, {$rename: {"Location":"location", "Series":"series","Court":"court", "Surface":"surface", "Round":"round", "Best of":"bestOf", "WRank":"homeRank", "LRank":"awayRank", "W1":"homeS1", "L1":"awayS1", "W2":"homeS2", "L2":"awayS2", "W3":"homeS3", "L3":"awayS3", "W4":"homeS4", "L4":"awayS4", "W5":"homeS5", "L5":"awayS5", "Comment":"comment"}}, {multi:true} );
+
+db.match.update({sport:"Football"}, {$rename: {"HTHG":"halfTimeHomeScore", "HTAG":"halfTimeAwayScore", "HTR":"halfTimeResult", "Attendance":"attendance", "Referee":"referee", "HS":"homeShots", "AS":"awayShots", "HST":"homeOnTarget", "AST":"awayOnTarget", "HHW":"homeWoodworks", "AHW":"awayWoodworks", "HC":"homeCorners", "AC":"awayCorners", "HF":"homeFouls", "AF":"awayFouls", "HFKC":"homeFreeKicks", "AFKC":"awayFreeKicks", "HO":"homeOffsides", "AO":"awayOffsides", "HY":"homeYellowCards", "AY":"awayYellowCards", "HR":"homeRedCards", "AR":"awayRedCards", "HBP":"homeBookingPoints", "ABP":"awayBookingPoints"} }, {multi:true} );
+
+db.match.update({sport:"Basket"}, {$rename: {"1qHS":"firstQuarterHomeScore", "1qAS":"firstQuarterAwayScore", "1qR":"firstQuarterResult", "AH":"homeAwayDifference", "TG":"totalScore", "Draw":"draw", "DHS":"drawHomeScore", "DAS":"drawAwayScore"} }, {multi:true} );
